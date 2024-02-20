@@ -1,2 +1,3 @@
 # SupportBot
- Discord bot that handles support in your server
+
+Discord bot that handles support in your server
