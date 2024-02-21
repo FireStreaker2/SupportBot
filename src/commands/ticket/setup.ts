@@ -1,5 +1,5 @@
 import { CommandInteraction, EmbedBuilder } from "discord.js";
-import { ticketConfig } from "../../config";
+import { ticketConfig } from "@/config";
 
 const setup = async (interaction: CommandInteraction) => {
   ticketConfig[interaction.guild?.id as string] = {

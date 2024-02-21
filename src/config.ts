@@ -1,17 +1,11 @@
-let { TOKEN, CLIENT_ID } = process.env;
+import { TicketConfig } from "./types";
 
-TOKEN = TOKEN as string;
-CLIENT_ID = CLIENT_ID as string;
+const TOKEN = process.env.TOKEN || "";
+const CLIENT_ID = process.env.CLIENT_ID || "";
 
-// TODO: add db integration instead of storing in memory?
-interface TicketConfig {
-  [key: string]: {
-    category: string;
-    role: string;
-  };
-}
+if (TOKEN === "" || CLIENT_ID === "")
+  throw new Error("Missing environment variables!");
 
 const ticketConfig: TicketConfig = {};
 
-export const config = { TOKEN, CLIENT_ID };
-export { ticketConfig };
+export { TOKEN, CLIENT_ID, ticketConfig };

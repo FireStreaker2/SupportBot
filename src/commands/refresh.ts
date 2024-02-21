@@ -1,5 +1,5 @@
 import { CommandInteraction, SlashCommandBuilder } from "discord.js";
-import { deploy } from "../deploy";
+import { deploy } from "@/deploy";
 
 export const data = new SlashCommandBuilder()
   .setName("refresh")

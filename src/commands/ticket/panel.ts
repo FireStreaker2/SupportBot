@@ -8,8 +8,9 @@ import {
   Guild,
   PermissionsBitField,
 } from "discord.js";
-import { ticketConfig } from "../../config";
+import { ticketConfig } from "@/config";
 
+// TODO: implement rate limiting for creating tickets
 const panel = async (interaction: CommandInteraction) => {
   const guild = interaction.guild as Guild;
 
@@ -33,6 +34,7 @@ const panel = async (interaction: CommandInteraction) => {
 
   const thumbnail = interaction.options.get("thumbnail");
   if (thumbnail) embed.setThumbnail(thumbnail.attachment?.url as string);
+
   const image = interaction.options.get("image");
   if (image) embed.setImage(image.attachment?.url as string);
 
@@ -93,8 +95,7 @@ const panel = async (interaction: CommandInteraction) => {
           parent: guild.channels.cache.find(
             (channel) =>
               channel.type === ChannelType.GuildCategory &&
-              channel.id ===
-                ticketConfig[interaction.guild?.id as string].category,
+              channel.id === ticketConfig[guild.id as string].category,
           )?.id,
         });
 

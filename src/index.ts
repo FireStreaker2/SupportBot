@@ -1,7 +1,7 @@
 import { Client, GatewayIntentBits, ActivityType } from "discord.js";
 import { commands } from "./commands";
 import { deploy } from "./deploy";
-import { config } from "./config";
+import { TOKEN } from "./config";
 
 const client = new Client({
   intents: [
@@ -11,9 +11,7 @@ const client = new Client({
   ],
 });
 
-client.on("guildCreate", async (guild) => {
-  await deploy(guild.id);
-});
+client.on("guildCreate", async (guild) => await deploy(guild.id));
 
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isCommand()) return;
@@ -38,4 +36,4 @@ client.once("ready", (client) => {
   });
 });
 
-client.login(config.TOKEN);
+client.login(TOKEN);

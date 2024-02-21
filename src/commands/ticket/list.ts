@@ -4,7 +4,7 @@ import {
   EmbedBuilder,
   Guild,
 } from "discord.js";
-import { ticketConfig } from "../../config";
+import { ticketConfig } from "@/config";
 
 const list = async (interaction: CommandInteraction) => {
   const guild = interaction.guild as Guild;
@@ -23,7 +23,7 @@ const list = async (interaction: CommandInteraction) => {
   const category = guild.channels.cache.find(
     (channel) =>
       channel.type === ChannelType.GuildCategory &&
-      channel.id === ticketConfig[interaction.guild?.id as string].category,
+      channel.id === ticketConfig[guild?.id as string].category,
   );
 
   const channelsInCategory = guild.channels.cache.filter(

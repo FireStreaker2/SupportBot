@@ -5,10 +5,7 @@ import {
   SlashCommandBuilder,
 } from "discord.js";
 import { list, panel, setup } from "./ticket";
-
-interface Actions {
-  [key: string]: (interaction: CommandInteraction) => Promise<any>;
-}
+import { Actions } from "@/types";
 
 export const data = new SlashCommandBuilder()
   .setName("tickets")
