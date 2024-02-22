@@ -114,6 +114,8 @@ const panel = async (interaction: CommandInteraction) => {
           }> needs support!`,
         });
 
+        await message.pin();
+
         await i.reply({
           content: `Ticket created: ${ticket}`,
           ephemeral: true,

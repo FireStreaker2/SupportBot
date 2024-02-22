@@ -5,6 +5,7 @@ export const data = new SlashCommandBuilder()
   .setName("refresh")
   .setDescription("Refresh commands in your server");
 
+// TODO: add embed
 export const execute = async (interaction: CommandInteraction) => {
   await interaction.deferReply();
 

@@ -17,9 +17,8 @@ client.on("interactionCreate", async (interaction) => {
   if (!interaction.isCommand()) return;
 
   const { commandName } = interaction;
-  if (commands[commandName as keyof typeof commands]) {
+  if (commands[commandName as keyof typeof commands])
     commands[commandName as keyof typeof commands].execute(interaction);
-  }
 });
 
 client.once("ready", (client) => {

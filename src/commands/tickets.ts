@@ -4,12 +4,19 @@ import {
   PermissionFlagsBits,
   SlashCommandBuilder,
 } from "discord.js";
-import { list, panel, setup } from "./ticket";
+import { add, close, list, panel, remove, setup } from "./ticket";
 import { Actions } from "@/types";
 
 export const data = new SlashCommandBuilder()
   .setName("tickets")
   .setDescription("Ticket related commands")
+  .addSubcommand((subcommand) =>
+    subcommand
+      .setName("close")
+      .setDescription(
+        "Close the channel this command is ran in if it is a valid ticket",
+      ),
+  )
   .addSubcommand((subcommand) =>
     subcommand.setName("list").setDescription("See all current tickets"),
   )
@@ -71,6 +78,33 @@ export const data = new SlashCommandBuilder()
           .setRequired(true),
       ),
   )
+  .addSubcommandGroup((subcommandGroup) =>
+    subcommandGroup
+      .setName("user")
+      .setDescription("Specific user utilities for tickets")
+      .addSubcommand((subcommand) =>
+        subcommand
+          .setName("add")
+          .setDescription("Add a user to the current ticket")
+          .addMentionableOption((option) =>
+            option
+              .setName("user")
+              .setDescription("User to add to the current ticket")
+              .setRequired(true),
+          ),
+      )
+      .addSubcommand((subcommand) =>
+        subcommand
+          .setName("remove")
+          .setDescription("Remove a user from the current ticket")
+          .addMentionableOption((option) =>
+            option
+              .setName("user")
+              .setDescription("User to remove from the curren ticket")
+              .setRequired(true),
+          ),
+      ),
+  )
   .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
   .setDMPermission(false);
 
@@ -85,8 +119,11 @@ export const execute = async (interaction: CommandInteraction) => {
   await interaction.deferReply({ ephemeral: command === "panel" });
 
   const actions: Actions = {
+    add: add,
+    close: close,
     list: list,
     panel: panel,
+    remove: remove,
     setup: setup,
   };
 
