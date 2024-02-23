@@ -1,4 +1,10 @@
-import { CommandInteraction, EmbedBuilder, TextChannel } from "discord.js";
+import {
+  CommandInteraction,
+  EmbedBuilder,
+  Guild,
+  TextChannel,
+} from "discord.js";
+import { logClosedTicket } from "./util";
 
 const close = async (interaction: CommandInteraction) => {
   if (!(interaction.channel as TextChannel)?.name.includes("ticket-")) {
@@ -19,6 +25,11 @@ const close = async (interaction: CommandInteraction) => {
 
   await new Promise((resolve) => setTimeout(resolve, 10000));
 
+  logClosedTicket(
+    interaction,
+    interaction.guild as Guild,
+    interaction.channel as TextChannel,
+  );
   return interaction.channel?.delete();
 };
 

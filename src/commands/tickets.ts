@@ -76,6 +76,12 @@ export const data = new SlashCommandBuilder()
           .setName("role")
           .setDescription("Support role for tickets")
           .setRequired(true),
+      )
+      .addChannelOption((option) =>
+        option
+          .setName("channel")
+          .setDescription("Channel for logging")
+          .setRequired(true),
       ),
   )
   .addSubcommandGroup((subcommandGroup) =>

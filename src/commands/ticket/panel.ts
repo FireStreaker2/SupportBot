@@ -9,6 +9,7 @@ import {
   PermissionsBitField,
 } from "discord.js";
 import { ticketConfig } from "@/config";
+import { logClosedTicket } from "./util";
 
 // TODO: implement rate limiting for creating tickets
 const panel = async (interaction: CommandInteraction) => {
@@ -131,13 +132,9 @@ const panel = async (interaction: CommandInteraction) => {
 
             await new Promise((resolve) => setTimeout(resolve, 10000));
 
+            logClosedTicket(interaction, guild, ticket);
             await i.channel?.delete();
           });
-
-          closeCollector?.on("end", () =>
-            // TODO: implement logging here
-            console.warn("Ticket closing colector stopped"),
-          );
         }
       } catch (error) {
         await i.reply({

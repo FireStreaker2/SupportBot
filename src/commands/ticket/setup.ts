@@ -5,6 +5,7 @@ const setup = async (interaction: CommandInteraction) => {
   ticketConfig[interaction.guild?.id as string] = {
     category: interaction.options.get("category")?.value as string,
     role: interaction.options.get("role")?.value as string,
+    channel: interaction.options.get("channel")?.value as string,
   };
 
   const embed = new EmbedBuilder()
@@ -19,6 +20,10 @@ const setup = async (interaction: CommandInteraction) => {
       {
         name: "Support Role",
         value: `<@&${ticketConfig[interaction.guild?.id as string].role}>`,
+      },
+      {
+        name: "Logging Channel",
+        value: `<#${ticketConfig[interaction.guild?.id as string].channel}>`,
       },
       {
         name: "Note",

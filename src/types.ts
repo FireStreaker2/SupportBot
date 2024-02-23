@@ -8,6 +8,7 @@ interface TicketConfig {
   [key: string]: {
     category: string;
     role: string;
+    channel: string;
   };
 }
 

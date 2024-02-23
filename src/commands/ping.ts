@@ -5,5 +5,5 @@ export const data = new SlashCommandBuilder()
   .setDescription("Check if the bot is working");
 
 export const execute = async (interaction: CommandInteraction) => {
-  await interaction.reply("Pong!");
+  return interaction.reply("Pong!");
 };
