@@ -1,5 +1,6 @@
+import * as moderation from "./moderation";
 import * as ping from "./ping";
 import * as refresh from "./refresh";
-import * as tickets from "./tickets";
+import * as ticket from "./ticket";
 
-export const commands = { ping, refresh, tickets };
+export const commands = { moderation, ping, refresh, ticket };

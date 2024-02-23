@@ -1,11 +1,11 @@
+import { Actions } from "@/types";
 import {
   CommandInteraction,
   InteractionType,
   PermissionFlagsBits,
   SlashCommandBuilder,
 } from "discord.js";
-import { add, close, list, panel, remove, setup } from "./ticket";
-import { Actions } from "@/types";
+import { add, close, list, panel, remove, setup } from "./tickets";
 
 export const data = new SlashCommandBuilder()
   .setName("tickets")
