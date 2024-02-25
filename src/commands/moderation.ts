@@ -5,7 +5,7 @@ import {
   PermissionFlagsBits,
   SlashCommandBuilder,
 } from "discord.js";
-import { ban, kick } from "./moderations";
+import { ban, kick, unban } from "./moderations";
 
 export const data = new SlashCommandBuilder()
   .setName("moderation")
@@ -38,6 +38,23 @@ export const data = new SlashCommandBuilder()
           .setRequired(false),
       ),
   )
+  .addSubcommand((subcommand) =>
+    subcommand
+      .setName("unban")
+      .setDescription("Unban a member")
+      .addStringOption((option) =>
+        option
+          .setName("id")
+          .setDescription("ID of user to unban")
+          .setRequired(true),
+      )
+      .addStringOption((option) =>
+        option
+          .setName("reason")
+          .setDescription("Reason for unban")
+          .setRequired(false),
+      ),
+  )
   .setDefaultMemberPermissions(PermissionFlagsBits.KickMembers)
   .setDMPermission(false);
 
@@ -55,6 +72,7 @@ export const execute = async (interaction: CommandInteraction) => {
   const actions: Actions = {
     ban: ban,
     kick: kick,
+    unban: unban,
   };
 
   return actions[command](interaction);

@@ -5,9 +5,9 @@ import {
   UserResolvable,
 } from "discord.js";
 
-// TODO: add softban and duration of ban, also unban
 const ban = async (interaction: CommandInteraction) => {
   const embed = new EmbedBuilder();
+
   try {
     const user = interaction.options.get("user")?.member;
     await interaction.guild?.members.ban(user as UserResolvable, {
