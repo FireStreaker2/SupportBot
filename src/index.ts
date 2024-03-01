@@ -14,7 +14,8 @@ const client = new Client({
 client.on("guildCreate", async (guild) => await deploy(guild.id));
 
 client.on("interactionCreate", async (interaction) => {
-  if (!interaction.isCommand()) return;
+  if (!interaction.isCommand() && !interaction.isUserContextMenuCommand())
+    return;
 
   const { commandName } = interaction;
   if (commands[commandName as keyof typeof commands])

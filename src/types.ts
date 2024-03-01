@@ -12,4 +12,11 @@ interface TicketConfig {
   };
 }
 
-export { Actions, TicketConfig };
+interface VerificationConfig {
+  [key: string]: {
+    role: string;
+    channel: string;
+  };
+}
+
+export { Actions, TicketConfig, VerificationConfig };

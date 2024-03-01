@@ -21,7 +21,7 @@ const logClosedTicket = async (
     .addFields(
       {
         name: "User",
-        value: `<@${interaction.user.id}> (${interaction.user.globalName})`,
+        value: `<@${interaction.user.id}> (${interaction.user.displayName})`,
       },
       { name: "Ticket Opened", value: ticket.createdAt.toString() },
       {
