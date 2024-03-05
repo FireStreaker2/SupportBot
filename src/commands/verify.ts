@@ -18,7 +18,7 @@ export const execute = async (interaction: CommandInteraction) => {
   const embed = new EmbedBuilder();
 
   if (!verificationConfig[(interaction.guild as Guild)?.id]) {
-    const embed = new EmbedBuilder()
+    embed
       .setColor(0xff0000)
       .setTitle("Error")
       .setDescription(
