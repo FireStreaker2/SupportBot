@@ -4,6 +4,10 @@ interface Actions {
   [key: string]: (interaction: CommandInteraction) => Promise<any>;
 }
 
+interface ReactionRolePairs {
+  [key: string]: string;
+}
+
 interface TicketConfig {
   [key: string]: {
     category: string;
@@ -19,4 +23,4 @@ interface VerificationConfig {
   };
 }
 
-export { Actions, TicketConfig, VerificationConfig };
+export { Actions, ReactionRolePairs, TicketConfig, VerificationConfig };

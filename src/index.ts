@@ -7,6 +7,7 @@ const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.GuildMessageReactions,
     GatewayIntentBits.MessageContent,
   ],
 });
@@ -22,6 +23,7 @@ client.on("interactionCreate", async (interaction) => {
     commands[commandName as keyof typeof commands].execute(interaction);
 });
 
+// TODO: make it refresh commands in every server
 client.once("ready", (client) => {
   console.log(`Logged in as ${client.user.tag}`);
 
