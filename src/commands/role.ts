@@ -39,7 +39,9 @@ export const data = new SlashCommandBuilder()
       ),
   )
   .addSubcommand((subcommand) =>
-    subcommand.setName("panel").setDescription("Create a reaction role panel"),
+    subcommand
+      .setName("panel")
+      .setDescription("Create a reaction role panel interactively"),
   )
   .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
   .setDMPermission(false);
