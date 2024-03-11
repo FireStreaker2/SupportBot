@@ -8,6 +8,15 @@ interface ReactionRolePairs {
   [key: string]: string;
 }
 
+interface ReportConfig {
+  [key: string]: string;
+}
+
+interface ReportInfo {
+  user: string;
+  reason: string;
+}
+
 interface TicketConfig {
   [key: string]: {
     category: string;
@@ -23,4 +32,11 @@ interface VerificationConfig {
   };
 }
 
-export { Actions, ReactionRolePairs, TicketConfig, VerificationConfig };
+export {
+  Actions,
+  ReactionRolePairs,
+  ReportConfig,
+  ReportInfo,
+  TicketConfig,
+  VerificationConfig,
+};
