@@ -8,7 +8,7 @@ import {
   UserContextMenuCommandInteraction,
 } from "discord.js";
 import { reportConfig } from "@/config";
-import { report } from "./reports/util";
+import { report } from "../reports/util";
 
 export const data = new ContextMenuCommandBuilder()
   .setName("reportUser")
