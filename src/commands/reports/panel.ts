@@ -6,6 +6,8 @@ import {
   EmbedBuilder,
   Guild,
   ModalBuilder,
+  PermissionFlagsBits,
+  PermissionsBitField,
   TextInputBuilder,
   TextInputStyle,
 } from "discord.js";
@@ -13,6 +15,15 @@ import { reportConfig } from "@/config";
 import { report } from "./util";
 
 const panel = async (interaction: CommandInteraction) => {
+  if (
+    !(interaction.member?.permissions as Readonly<PermissionsBitField>).has(
+      PermissionFlagsBits.ManageChannels,
+    )
+  )
+    return interaction.editReply(
+      "You do not have permission to run this command!",
+    );
+
   const guild = interaction.guild as Guild;
 
   if (!reportConfig[guild.id]) {
@@ -83,7 +94,7 @@ const panel = async (interaction: CommandInteraction) => {
       await i.showModal(modal);
 
       const submitted = await i.awaitModalSubmit({
-        filter: (interaction) =>
+        filter: (interaction: { customId: string; user: { id: any } }) =>
           interaction.customId === "reportModal" &&
           interaction.user.id === i.user.id,
         time: 120000,
@@ -94,7 +105,7 @@ const panel = async (interaction: CommandInteraction) => {
           user: submitted.fields.getTextInputValue("userInput"),
           reason: submitted.fields.getTextInputValue("descriptionInput"),
         });
-        
+
         await submitted.reply({
           content: "User has been succesfully reported.",
           ephemeral: true,

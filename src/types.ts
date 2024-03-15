@@ -4,6 +4,10 @@ interface Actions {
   [key: string]: (interaction: CommandInteraction) => Promise<any>;
 }
 
+interface Cooldowns {
+  [key: string]: number;
+}
+
 interface ReactionRolePairs {
   [key: string]: string;
 }
@@ -34,6 +38,7 @@ interface VerificationConfig {
 
 export {
   Actions,
+  Cooldowns,
   ReactionRolePairs,
   ReportConfig,
   ReportInfo,
