@@ -86,7 +86,7 @@ const panel = async (interaction: CommandInteraction) => {
         });
 
         return;
-      } 
+      }
 
       try {
         const ticket = await guild.channels.create({

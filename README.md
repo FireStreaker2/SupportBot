@@ -17,7 +17,7 @@ SupportBot is a discord bot made using [discord.js](https://discord.js.org/) and
 
 # Roadmap
 
-SupportBot is still currently in development! For a list of unfinished things that are planned to be added, please refer to #1.
+SupportBot is still currently in development! For a list of unfinished things that are planned to be added, please refer to [#1](https://github.com/FireStreaker2/SupportBot/issues/1).
 
 # Usage
 

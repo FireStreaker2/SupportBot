@@ -1,4 +1,9 @@
-import { CommandInteraction, EmbedBuilder, PermissionFlagsBits, PermissionsBitField } from "discord.js";
+import {
+  CommandInteraction,
+  EmbedBuilder,
+  PermissionFlagsBits,
+  PermissionsBitField,
+} from "discord.js";
 import { reportConfig } from "@/config";
 
 const setup = async (interaction: CommandInteraction) => {
