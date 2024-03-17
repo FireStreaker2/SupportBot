@@ -2,7 +2,6 @@ import { Actions } from "@/types";
 import {
   CommandInteraction,
   InteractionType,
-  PermissionFlagsBits,
   SlashCommandBuilder,
 } from "discord.js";
 import { manual, panel, setup } from "./reports";
@@ -79,7 +78,6 @@ export const data = new SlashCommandBuilder()
           .setRequired(true),
       ),
   )
-  .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild) // TODO: make this only applicable to panel and setup
   .setDMPermission(false);
 
 export const execute = async (interaction: CommandInteraction) => {
@@ -91,7 +89,7 @@ export const execute = async (interaction: CommandInteraction) => {
 
   const command = interaction.options.getSubcommand();
 
-  await interaction.deferReply({ ephemeral: command !== "setup" });
+  await interaction.deferReply({ ephemeral: true });
 
   const actions: Actions = {
     manual: manual,

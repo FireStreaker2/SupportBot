@@ -8,7 +8,7 @@ import {
   UserContextMenuCommandInteraction,
 } from "discord.js";
 import { verificationConfig } from "@/config";
-import { logVerification } from "./verifications/util";
+import { logVerification } from "../verifications/util";
 
 export const data = new ContextMenuCommandBuilder()
   .setName("verify")

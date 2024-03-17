@@ -23,8 +23,7 @@ client.on("interactionCreate", async (interaction) => {
     commands[commandName as keyof typeof commands].execute(interaction);
 });
 
-// TODO: make it refresh commands in every server
-client.once("ready", (client) => {
+client.once("ready", async (client) => {
   console.log(`Logged in as ${client.user.tag}`);
 
   client.user.setPresence({
@@ -36,6 +35,11 @@ client.once("ready", (client) => {
     ],
     status: "idle",
   });
+
+  if (process.env.NODE_ENV === "production") {
+    for (const [id, guild] of client.guilds.cache) await deploy(guild.id);
+    console.log("Refreshed commands for every server!");
+  }
 });
 
 client.login(TOKEN);

@@ -8,10 +8,9 @@ import {
   Guild,
   PermissionsBitField,
 } from "discord.js";
-import { ticketConfig } from "@/config";
+import { cooldowns, ticketConfig } from "@/config";
 import { logClosedTicket } from "./util";
 
-// TODO: implement rate limiting for creating tickets
 const panel = async (interaction: CommandInteraction) => {
   const guild = interaction.guild as Guild;
 
@@ -76,6 +75,19 @@ const panel = async (interaction: CommandInteraction) => {
       );
 
     collector?.on("collect", async (i) => {
+      const now = Date.now();
+      if (
+        cooldowns[interaction.user.id] &&
+        cooldowns[interaction.user.id] > now
+      ) {
+        await i.reply({
+          content: "You are on cooldown! Please try again later.",
+          ephemeral: true,
+        });
+
+        return;
+      }
+
       try {
         const ticket = await guild.channels.create({
           name: `ticket-${interaction.user.id}`,
@@ -121,6 +133,8 @@ const panel = async (interaction: CommandInteraction) => {
           content: `Ticket created: ${ticket}`,
           ephemeral: true,
         });
+
+        cooldowns[interaction.user.id] = now + 300000;
 
         if (message) {
           const closeCollector = message.createMessageComponentCollector({

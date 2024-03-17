@@ -4,11 +4,11 @@ import * as moderation from "./moderation";
 import * as ping from "./ping";
 import * as refresh from "./refresh";
 import * as report from "./report";
-import * as reportUser from "./reportUser";
+import * as reportUser from "./context/reportUser";
 import * as role from "./role";
 import * as ticket from "./ticket";
 import * as verification from "./verification";
-import * as verify from "./verify";
+import * as verify from "./context/verify";
 
 export const commands = {
   info,
