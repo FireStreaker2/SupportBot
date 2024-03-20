@@ -1,19 +1,21 @@
 {
-  "name": "supportbot",
-  "module": "index.ts",
+  "name": "supportbot-monorepo",
   "type": "module",
   "scripts": {
-    "start": "bun run src/index.ts",
+    "start": "concurrently \"bun run bot/src/index.ts\" \"cd dashboard && bun start\"",
+    "start:bot": "bun run bot/src/index.ts",
+    "start:site": "cd dashboard && bun start",
+    "dev": "concurrently \"bun run bot/src/index.ts\" \"cd dashboard && bun run dev\"",
+    "dev:site": "cd dashboard && bun run dev",
+    "build": "cd dashboard && bun run build",
     "format": "prettier --write ."
   },
   "devDependencies": {
     "bun-types": "latest",
+    "concurrently": "^8.2.2",
     "prettier": "^3.2.5"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
-  },
-  "dependencies": {
-    "discord.js": "^14.14.1"
   }
 }
